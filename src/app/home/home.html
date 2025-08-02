@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="header-container">
+    <h1>Members List</h1>
+    <button mat-mini-fab aria-label="Toggle Add Member Form" (click)="onToggleAddForm()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  @if (isAddingMember()) {
+    <app-member-form
+      (save)="onSaveMember($event)"
+      (cancel)="onToggleAddForm()">
+    </app-member-form>
+  }
+
+  <app-member-list
+    [members]="members()"
+    (editMember)="onEditMember($event)"
+    (deleteMember)="onDeleteMember($event)">
+  </app-member-list>
+
+</div>

@@ -1,0 +1,19 @@
+.add-member-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.chip-list-field {
+  margin-bottom: 1rem;
+}

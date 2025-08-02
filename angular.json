@@ -25,11 +25,18 @@
               }
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ]
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -88,5 +95,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "cff85ca9-b881-42b1-8a25-a5c6d2134ec4"
   }
 }

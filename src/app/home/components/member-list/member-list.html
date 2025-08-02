@@ -1,0 +1,24 @@
+<mat-list class="member-list">
+  @for (member of members(); track member.id) {
+    <mat-list-item>
+      <span matListItemTitle>Member: {{ member.name }}</span>
+      <span matListItemLine>Age: {{ member.age }}</span>
+      <span matListItemLine>Sons: {{ member.sons }}</span>
+    </mat-list-item>
+    <div class="member-actions">
+      <button mat-icon-button
+              (click)="onEdit(member)"
+              [attr.aria-label]="'Edit ' + member.name">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button
+              color="warn"
+              (click)="onDelete(member.id!)"
+              [attr.aria-label]="'Delete ' + member.name">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  } @empty {
+    <mat-list-item>No members found.</mat-list-item>
+  }
+</mat-list>

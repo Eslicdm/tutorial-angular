@@ -1,0 +1,8 @@
+.member-list {
+  margin-top: 1rem;
+}
+
+.member-actions {
+  display: flex;
+  gap: 8px;
+}

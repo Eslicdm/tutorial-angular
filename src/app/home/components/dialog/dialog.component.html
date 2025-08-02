@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Edit Member</h1>
+<div mat-dialog-content>
+  <app-member-form
+    [member]="data.member"
+    (save)="onSave($event)"
+    (cancel)="onCancel()">
+  </app-member-form>
+</div>

@@ -1,0 +1,55 @@
+<div class="auth-container">
+  <div class="brand-container">
+    <img
+      class="brand-logo"
+      ngSrc="https://angular.io/assets/images/logos/angular/logo-nav@2x.png"
+      alt="Brand Logo"
+      width="150"
+      height="150"
+      priority
+    />
+    <h1>Login</h1>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="example@example.com"
+          [formControl]="email"
+          required
+        />
+        @if (email.invalid) {
+          <mat-error>{{errorMessage()}}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="isPasswordVisible() ? 'password' : 'text'"
+          [formControl]="password"
+          required
+        />
+        <button
+          matIconButton
+          matSuffix
+          (click)="togglePasswordVisibility($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="isPasswordVisible()"
+        >
+          <mat-icon>{{isPasswordVisible() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        @if (password.hasError('required')) {
+        <mat-error>You must enter a value</mat-error>
+        }
+      </mat-form-field>
+      <mat-card-actions>
+        <button matButton="filled" routerLink="/home">Login</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>
