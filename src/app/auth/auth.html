@@ -11,45 +11,67 @@
     <h1>Login</h1>
   </div>
 
-  <mat-card>
-    <mat-card-content>
-      <mat-form-field>
-        <mat-label>Enter your email</mat-label>
-        <input
-          matInput
-          placeholder="example@example.com"
-          [formControl]="email"
-          required
-        />
-        @if (email.invalid) {
-          <mat-error>{{errorMessage()}}</mat-error>
-        }
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Enter your password</mat-label>
-        <input
-          matInput
-          [type]="isPasswordVisible() ? 'password' : 'text'"
-          [formControl]="password"
-          required
-        />
-        <button
-          matIconButton
-          matSuffix
-          (click)="togglePasswordVisibility($event)"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="isPasswordVisible()"
-        >
-          <mat-icon>{{isPasswordVisible() ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        @if (password.hasError('required')) {
-        <mat-error>You must enter a value</mat-error>
-        }
-      </mat-form-field>
-      <mat-card-actions>
-        <button matButton="filled" routerLink="/home">Login</button>
+  @if (authService.isAuthenticated()) {
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Welcome, {{ authService.userProfile()?.name }}!</mat-card-title>
+        <mat-card-subtitle>You are logged in.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button mat-stroked-button routerLink="/">Go to Members</button>
+        <button mat-raised-button color="warn" (click)="logout()">Logout</button>
       </mat-card-actions>
-    </mat-card-content>
-  </mat-card>
+    </mat-card>
+  } @else {
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Please Login</mat-card-title>
+        <mat-card-subtitle>You need to login to continue.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" class="full-width" (click)="login()">Login with Keycloak</button>
+      </mat-card-actions>
+    </mat-card>
+  }
+<!--  <mat-c<>ard>-->
+  <!--    <mat-card-content>-->
+  <!--      <mat-form-field>-->
+  <!--        <mat-label>Enter your email</mat-label>-->
+  <!--        <input-->
+  <!--          matInput-->
+  <!--          placeholder="example@example.com"-->
+  <!--          [formControl]="email"-->
+  <!--          required-->
+  <!--        />-->
+  <!--        @if (email.invalid) {-->
+  <!--          <mat-error>{{errorMessage()}}</mat-error>-->
+  <!--        }-->
+  <!--      </mat-form-field>-->
+
+  <!--      <mat-form-field>-->
+  <!--        <mat-label>Enter your password</mat-label>-->
+  <!--        <input-->
+  <!--          matInput-->
+  <!--          [type]="isPasswordVisible() ? 'password' : 'text'"-->
+  <!--          [formControl]="password"-->
+  <!--          required-->
+  <!--        />-->
+  <!--        <button-->
+  <!--          matIconButton-->
+  <!--          matSuffix-->
+  <!--          (click)="togglePasswordVisibility($event)"-->
+  <!--          [attr.aria-label]="'Hide password'"-->
+  <!--          [attr.aria-pressed]="isPasswordVisible()"-->
+  <!--        >-->
+  <!--          <mat-icon>{{isPasswordVisible() ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+  <!--        </button>-->
+  <!--        @if (password.hasError('required')) {-->
+  <!--        <mat-error>You must enter a value</mat-error>-->
+  <!--        }-->
+  <!--      </mat-form-field>-->
+  <!--      <mat-card-actions>-->
+  <!--        <button matButton="filled" routerLink="/home">Login</button>-->
+  <!--      </mat-card-actions>-->
+  <!--    </mat-card-content>-->
+  <!--  </mat-card></>-->
 </div>
